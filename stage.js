@@ -7,9 +7,9 @@ timerProgress.style.strokeDasharray = String(circumference);
 
 function updateCondition(db) {
   const condition = db > 95
-    ? { className: 'danger', text: 'Exceso de volumen. Riesgo físico.' }
+    ? { className: 'danger', text: '🔇 Exceso de volumen 🔇 Potencial daño auditivo irreversible 🔇' }
     : db > 85
-      ? { className: 'warning', text: 'Riesgo de distorsión' }
+      ? { className: 'warning', text: '⚠️ Reduzca el Volúmen ⚠️ ' }
       : { className: 'good', text: 'Nivel óptimo' };
   const element = document.getElementById('stageCondition');
   element.classList.remove('good', 'warning', 'danger');
