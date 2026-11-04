@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070909">
+  <title>StageDSP | Escenario</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="stage-page">
+  <main class="stage-shell" id="stageShell">
+    <header class="stage-header">
+      <div class="brand stage-brand"><span class="brand-mark" aria-hidden="true"></span><span><strong>StageDSP</strong><small>Vista de escenario</small></span></div>
+      <span class="stage-live"><i></i><span id="stageConnection">Conectando</span></span>
+    </header>
+    <section class="stage-grid" aria-label="Información de escenario">
+      <article class="stage-panel stage-timer">
+        <div class="stage-panel-title">Temporizador</div>
+        <div class="stage-timer-ring" id="stageTimerRing">
+          <svg viewBox="0 0 100 100" aria-hidden="true"><circle class="timer-track" cx="50" cy="50" r="46"></circle><circle class="timer-progress" id="stageTimerProgress" cx="50" cy="50" r="46"></circle></svg>
+          <div><output id="stageTimerValue">05:00</output><small id="stageTimerStatus">LISTO</small></div>
+        </div>
+      </article>
+      <article class="stage-panel stage-meter">
+        <div class="stage-panel-title">Nivel de audio</div>
+        <div class="stage-db"><output id="stageDbValue">0</output><span>dB</span></div>
+        <div class="stage-condition good" id="stageCondition"><span class="condition-indicator"></span><span id="stageConditionText">Nivel óptimo</span></div>
+        <div class="stage-level-track"><div id="stageLevelFill"></div></div>
+        <div class="stage-level-labels"><span>0</span><span>60</span><span>120 dB</span></div>
+      </article>
+      <article class="stage-panel stage-message-panel">
+        <div class="stage-panel-title">Mensaje de cabina</div>
+        <div class="stage-message" id="stageMessage">Esperando indicaciones</div>
+      </article>
+    </section>
+    <footer class="stage-footer"><span>StageDSP · Escenario</span><span>Doble clic para pantalla completa</span></footer>
+  </main>
+  <script src="local-bus.js"></script>
+  <script src="stage.js"></script>
+</body>
+</html>

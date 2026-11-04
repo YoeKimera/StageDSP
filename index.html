@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080a09">
+  <title>StageDSP | Cabina</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="admin-page">
+  <main class="admin-shell">
+    <header class="admin-header">
+      <a class="brand" href="./" aria-label="StageDSP, cabina">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span><strong>StageDSP</strong><small>Cabina · Control de escenario</small></span>
+      </a>
+      <div class="output-actions">
+        <button class="button button-secondary" id="openStage" type="button">Abrir pantalla escenario</button>
+        <button class="button button-cast" id="castStage" type="button">Transmitir a pantalla</button>
+      </div>
+    </header>
+
+    <div class="connection-line">
+      <span class="connection-dot" id="connectionDot"></span>
+      <span id="connectionStatus">Conectando con StageDSP…</span>
+      <span class="connection-hint">Los cambios se reflejan en la pantalla de escenario</span>
+    </div>
+
+    <section class="admin-grid" aria-label="Controles de escenario">
+      <section class="control-panel timer-panel" aria-labelledby="timerHeading">
+        <div class="panel-heading"><h1 id="timerHeading">Temporizador</h1><span>01</span></div>
+        <div class="admin-timer-readout">
+          <div class="timer-ring" id="timerRing">
+            <svg viewBox="0 0 100 100" aria-hidden="true"><circle class="timer-track" cx="50" cy="50" r="46"></circle><circle class="timer-progress" id="timerProgress" cx="50" cy="50" r="46"></circle></svg>
+            <div><output id="timerValue">05:00</output><small id="timerStatus">LISTO</small></div>
+          </div>
+        </div>
+        <div class="time-inputs">
+          <label>Minutos<input id="minutesInput" type="number" min="0" max="99" value="5" inputmode="numeric"></label>
+          <span aria-hidden="true">:</span>
+          <label>Segundos<input id="secondsInput" type="number" min="0" max="59" value="0" inputmode="numeric"></label>
+        </div>
+        <div class="button-row">
+          <button class="button button-primary" id="timerToggle" type="button">Iniciar</button>
+          <button class="button button-secondary" id="timerReset" type="button">Reiniciar</button>
+        </div>
+      </section>
+
+      <section class="control-panel meter-panel" aria-labelledby="meterHeading">
+        <div class="panel-heading"><h2 id="meterHeading">Nivel de audio</h2><span>02</span></div>
+        <div class="meter-readout"><output id="dbValue">0</output><span>dB</span></div>
+        <div class="meter-condition good" id="meterCondition" role="status" aria-live="polite"><span class="condition-indicator"></span><span id="meterConditionText">Nivel óptimo</span></div>
+        <div class="level-track" role="meter" aria-label="Nivel de entrada del micrófono" aria-valuemin="0" aria-valuemax="120" aria-valuenow="0" id="meterAria"><div id="levelFill"></div></div>
+        <div class="level-labels"><span>0</span><span>30</span><span>60 · VOZ</span><span>90</span><span>120 dB</span></div>
+        <div class="meter-controls">
+          <button class="button button-secondary" id="micToggle" type="button">Activar micrófono</button>
+          <label class="calibration-control">Calibración <input id="calibrationInput" type="range" min="-24" max="24" value="0"><output id="calibrationValue">0 dB</output></label>
+          <small>La medición depende del micrófono y su calibración.</small>
+        </div>
+      </section>
+
+      <section class="control-panel message-panel" aria-labelledby="messageHeading">
+        <div class="panel-heading"><h2 id="messageHeading">Mensajes a la banda</h2><span>03</span></div>
+        <form id="messageForm">
+          <label for="messageInput">Indicación para el escenario</label>
+          <textarea id="messageInput" maxlength="140" rows="3" placeholder="Ej.: Vamos al último coro"></textarea>
+          <label class="duration-control" for="blinkDuration">Parpadeo <input id="blinkDuration" type="number" min="2" max="15" value="5"> segundos</label>
+          <button class="button button-primary" type="submit">Enviar mensaje</button>
+        </form>
+        <div class="message-preview" id="messagePreview">El próximo mensaje aparecerá aquí</div>
+      </section>
+    </section>
+    <footer class="admin-footer"><span>StageDSP · Panel de administración</span><span>Solo en la red local de confianza</span></footer>
+    <p class="toast" id="toast" role="status" aria-live="polite"></p>
+  </main>
+  <script src="local-bus.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
